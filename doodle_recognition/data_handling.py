@@ -9,7 +9,7 @@ import cross_validation
 
 def get_input_true_values(k):
     # Reads the data, does one hot encoding for the true values, normalizes input values, shuffles and transposes both input and true values
-    data_dir = r'C:/Users/Kostas/Desktop/Coding/Codes/Neural Network (From Scratch)/doodle_recognition/Data'
+    data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Data')
     file_names = ['full_numpy_bitmap_apple.npy', 'full_numpy_bitmap_car.npy', 'full_numpy_bitmap_crown.npy', 
                   'full_numpy_bitmap_flower.npy', 'full_numpy_bitmap_fork.npy', 'full_numpy_bitmap_hand.npy',
                   'full_numpy_bitmap_headphones.npy', 'full_numpy_bitmap_keyboard.npy', 'full_numpy_bitmap_light bulb.npy',

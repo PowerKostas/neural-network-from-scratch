@@ -1,3 +1,14 @@
+
+# HD fix
+import ctypes
+try:
+    ctypes.windll.shcore.SetProcessDpiAwareness(1)
+except Exception:
+    try:
+        ctypes.windll.user32.SetProcessDPIAware()
+    except Exception:
+        pass
+
 import tkinter as tk
 from PIL import Image, ImageDraw
 import numpy as np
@@ -96,7 +107,7 @@ class DigitDrawer:
             self.best_label.config(text = 'Prediction: None')
             return
 
-        predicted_values = make_predictions.get(img_array) 
+        predicted_values = make_predictions.get(img_array, 'doodle_recognition') 
         for i, prob in enumerate(predicted_values[:, 0]):
             self.pred_labels[i].config(text = f'{classes[i]}: {prob * 100 :.1f}%')
 

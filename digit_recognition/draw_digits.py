@@ -1,3 +1,13 @@
+# HD fix
+import ctypes
+try:
+    ctypes.windll.shcore.SetProcessDpiAwareness(1)
+except Exception:
+    try:
+        ctypes.windll.user32.SetProcessDPIAware()
+    except Exception:
+        pass
+
 import tkinter as tk
 from PIL import Image, ImageDraw
 import numpy as np
@@ -79,7 +89,7 @@ class DigitDrawer:
             self.prediction_label.config(text = 'Prediction: None')
             return
 
-        predicted_values = make_predictions.get(img_array)
+        predicted_values = make_predictions.get(img_array, "digit_recognition")
         digit = np.argmax(predicted_values, axis = 0)[0]
         confidence = predicted_values[digit][0] * 100
 
